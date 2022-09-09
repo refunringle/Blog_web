@@ -1,4 +1,5 @@
 import argparse
+from ast import arg
 import logging
 
 import create_db as db
@@ -26,8 +27,8 @@ def configure_logging(level=logging.INFO):
 
 
 
-def create_tables():
-    conn = db.get_connection()
+def create_tables(db_name):
+    conn = db.get_connection(db_name)
     with conn.cursor() as cursor:
         with open("init.sql") as f:
             sql = f.read()
@@ -43,7 +44,6 @@ def create_tables():
 #             db.add_song(songs, artist_id, lyrics)
             
 
-
 def main():
     args = parse_args()
 
@@ -54,7 +54,7 @@ def main():
     
     if args.command =="cdb":
         logger.info("Creating Database")
-        create_tables()
+        create_tables(args.db)
         # insert_data_to_database(url_address)
     else:
         logger.warning("%s not implemented", args.command)
