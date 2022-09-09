@@ -1,18 +1,20 @@
+-- DROP TABLE IF EXISTS user CASCADE;
+-- DROP TABLE IF EXISTS Post CASCADE;
 -- DROP TABLE IF EXISTS Post_Comment CASCADE;
+-- DROP TABLE IF EXISTS guest_user CASCADE;
 
-
-CREATE TABLE [IF NOT EXISTS] user(
-    id serial PRIMARY KEY,
+CREATE TABLE user(
+    id SERIAL PRIMARY KEY,
 	name VARCHAR ( 50 ) UNIQUE NOT NULL,
 	email VARCHAR ( 255 ) UNIQUE NOT NULL,
-	password VARCHAR ( 50 ) NOT NULL,
+	password VARCHAR ( 50 ) NOT NULL
 	-- created_on TIMESTAMP NOT NULL,
     -- last_login TIMESTAMP
 );
 
-CREATE TABLE [IF NOT EXISTS] post(
+CREATE TABLE post(
     id SERIAL PRIMARY KEY,
-    user_id int FORIEGN KEY REFERENCE user(id),
+    user_id INT FOREIGN KEY references user(id),
     title VARCHAR(150),
     category VARCHAR(100),
     -- summary TEXT,
@@ -21,19 +23,18 @@ CREATE TABLE [IF NOT EXISTS] post(
     -- tag SERIAL 
 );
 
-CREATE TABLE [IF NOT EXISTS] Post_Comment(
-    id SERIAL ,
-    post_id INT FORIEGN KEY REFERENCE post(id),
+CREATE TABLE Post_Comment(
+    id SERIAL,
+    post_id INT FOREIGN KEY references post(id)),
     Guest_name VARCHAR(100),
-    publish_Time TIMESTAMP NOT NULL VALUES(now()),
+    publish_Time TIMESTAMP NOT NULL VALUES(default now()),
     comment TEXT
 );
 
-CREATE TABLE [IF NOT EXISTS] guest_user(
+CREATE TABLE guest_user(
     id SERIAL PRIMARY KEY,
-    post_id INT FORIEGN KEY REFERENCE post(id),
+    post_id INT FOREIGN KEY references Post_Comment(id),
     Guest_name VARCHAR(100),
-    GUEST_Time TIMESTAMP NOT NULL VALUES(now()),
+    GUEST_Time TIMESTAMP NOT NULL VALUES(default now()),
     comment TEXT
-
 );

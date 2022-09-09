@@ -13,26 +13,26 @@ def get_connection(dbname="blog"):
 #     conn.close()
     # return id
 
-def add_user(id,name,email,password):
-    conn = get_connection()
-    with conn.cursor() as curs:
-        curs.execute("INSERT INTO songs(name, artist_id, lyrics) VALUES(%s,%s, %s)",                     
-         (song_name, artist_id, lyrics))
-    conn.commit()
-    conn.close()
+# def add_user(id,name,email,password):
+#     conn = get_connection()
+#     with conn.cursor() as curs:
+#         curs.execute("INSERT INTO songs(name, artist_id, lyrics) VALUES(%s,%s, %s)",                     
+#          (song_name, artist_id, lyrics))
+#     conn.commit()
+#     conn.close()
 
-def add_post(id,user_name,title,category,summary,content,publish_time,tag):
-    conn = get_connection()
-    with conn.cursor() as curs:
-        curs.execute("INSERT INTO songs(name, artist_id, lyrics) VALUES(%s,%s, %s)",
-         (song_name, artist_id, lyrics))
-    conn.commit()
-    conn.close()
+# def add_post(id,user_name,title,category,summary,content,publish_time,tag):
+#     conn = get_connection()
+#     with conn.cursor() as curs:
+#         curs.execute("INSERT INTO songs(name, artist_id, lyrics) VALUES(%s,%s, %s)",
+#          (song_name, artist_id, lyrics))
+#     conn.commit()
+#     conn.close()
 
-def add_post_comment(id,post_id,guest_name,publish_time,content):
-    conn = get_connection()
-    with conn.cursor() as curs:
-        curs.execute("INSERT INTO songs(name, artist_id, lyrics) VALUES(%s,%s, %s)",
-         (song_name, artist_id, lyrics))
-    conn.commit()
-    conn.close()    
+# def add_post_comment(id,post_id,guest_name,publish_time,content):
+#     conn = get_connection()
+#     with conn.cursor() as curs:
+#         curs.execute("INSERT INTO songs(name, artist_id, lyrics) VALUES(%s,%s, %s)",
+#          (song_name, artist_id, lyrics))
+#     conn.commit()
+#     conn.close()    
