@@ -8,9 +8,9 @@ logger = None
 def parse_args():
     parser = argparse.ArgumentParser(description = "Web crawler")
     parser.add_argument("-d", "--debug", help = "Enable debug logging", action="store_true")
-    parser.add_argument("--db", help="Name of database to use", action="store", default="lyrics")
+    parser.add_argument("--db", help="Name of database to use", action="store", default="blog")
     subcommands = parser.add_subparsers(help="Commands", dest="command", required=True)
-    subcommands.add_parser("-cdb" "creatdb", help="creating our database")
+    subcommands.add_parser("cdb", help="creating our database")
 
     return parser.parse_args()
 
@@ -26,8 +26,8 @@ def configure_logging(level=logging.INFO):
 
 
 
-def create_tables(db_name):
-    conn = db.get_connection(db_name)
+def create_tables():
+    conn = db.get_connection()
     with conn.cursor() as cursor:
         with open("init.sql") as f:
             sql = f.read()
@@ -52,9 +52,9 @@ def main():
     else:
         configure_logging(logging.INFO)
     
-    if args.command == "cdb":
-        logger.info("Creating database")
-        create_tables(args.db)
+    if args.command =="cdb":
+        logger.info("Creating Database")
+        create_tables()
         # insert_data_to_database(url_address)
     else:
         logger.warning("%s not implemented", args.command)
