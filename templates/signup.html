@@ -1,0 +1,124 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
+content %}
+<form method="POST" name='registration' action="/signup" >
+  <h3 align="center">Sign Up</h3>
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input
+      type="text"
+      id="email"
+      name="email"
+      class="form-control"
+      placeholder="Enter Email"
+    />
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      class="form-control"
+      placeholder="Enter Username"
+    />
+    <label for="password1">Password</label>
+    <input
+      type="password"
+      id="password1"
+      name="password1"
+      class="form-control"
+      placeholder="Enter Password"
+    />
+    <label for="password2">Password Again</label>
+    <input
+      type="password"
+      id="password2"
+      name="password2"
+      class="form-control"
+      placeholder="Enter Password Again"
+    />
+    <br />
+    <div align="center">
+      <button class="btn btn-primary" type="submit" onclick="formValidation()">Sign Up</button>
+    </div>
+  </div>
+</form>
+
+<script>
+  
+  function formValidation()
+    {
+    var passid = document.registration.password1;
+    var passid2 = document.registration.password2;
+    var uname = document.registration.username;
+    var uemail = document.registration.email;  
+
+   if(ValidateEmail(uemail))
+    {
+    if(allLetter(uname))
+    {
+    if(passid_validation(passid,7,12))
+    {
+    if(matchPassword(passid,passid2))
+    {
+    } 
+    }
+    }
+    }
+    return false;
+    
+  /////////////////////////////////////////
+  function pass_validation(passid,mx,my)
+  {
+  var passid_len = passid.value.length;
+  if (passid_len == 0 ||passid_len >= my || passid_len < mx)
+  {
+  alert("Password should not be empty / length be between "+mx+" to "+my);
+  passid.focus();
+  return false;
+  }
+  return true;
+  }
+  
+  /////////////////////////////////////////
+  function allLetter(uname)
+  { 
+  var letters = /^[A-Za-z]+$/;
+  if(uname.value.match(letters))
+  {
+  return true;
+  }
+  else
+  {
+  alert('Username must have alphabet characters only');
+  uname.focus();
+  return false;
+  }
+  }
+  /////////////////////////////////////////
+  function ValidateEmail(uemail)
+  {
+  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if(uemail.value.match(mailformat))
+  {
+  return true;
+  }
+  else
+  {
+  alert("You have entered an invalid email address!");
+  uemail.focus();
+  return false;
+  }
+  }
+  /////////////////////////////////////////
+  
+  function matchPassword() {  
+    if(passid != passid2)  
+    {   
+      alert("Passwords did not matchhhh");  
+    } else {  
+      alert("Password created successfully");  
+    }  
+  }  
+  
+  } 
+</script> 
+{% endblock %}
